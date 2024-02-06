@@ -45,11 +45,11 @@ impl<const N: usize, T> Default for PhysicsState<N, T> {
 }
 
 pub fn tick<const N: usize, T>(
-	eval: &impl Fn(&mut PhysicsState<N, T>, &SimplePhysicsProps, Vec2, f32),
-	phys: &mut PhysicsState<N, T>,
-	physics_props: &SimplePhysicsProps,
+    eval: &impl Fn(&mut PhysicsState<N, T>, &SimplePhysicsProps, Vec2, f32),
+    phys: &mut PhysicsState<N, T>,
+    physics_props: &SimplePhysicsProps,
     anchor: Vec2,
-	h: f32,
+    h: f32,
 ) {
     let curs = phys.vars;
     phys.derivatives = [0.; N];

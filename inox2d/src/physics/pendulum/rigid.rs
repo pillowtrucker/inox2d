@@ -1,6 +1,6 @@
-use glam::{Vec2, vec2};
+use glam::{vec2, Vec2};
 
-use crate::physics::runge_kutta::{PhysicsState, self};
+use crate::physics::runge_kutta::{self, PhysicsState};
 use crate::physics::SimplePhysicsProps;
 
 /// Marker type for a rigid pendulum physics state

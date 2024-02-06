@@ -45,16 +45,32 @@ impl SimplePhysicsSystem {
 pub struct SimplePhysicsProps {
     /// Gravity scale (1.0 = puppet gravity)
     pub gravity: f32,
+    pub offset_gravity: f32,
     /// Pendulum/spring rest length (pixels)
     pub length: f32,
+    pub offset_length: f32,
     /// Resonant frequency (Hz)
     pub frequency: f32,
+    pub offset_frequency: f32,
     /// Angular damping ratio
     pub angle_damping: f32,
+    pub offset_angle_damping: f32,
     /// Length damping ratio
     pub length_damping: f32,
+    pub offset_length_damping: f32,
 
     pub output_scale: Vec2,
+    pub offset_output_scale: Vec2,
+}
+
+impl SimplePhysicsProps {
+    pub fn final_angle_damping(&self) -> f32 {
+        self.angle_damping * self.offset_angle_damping
+    }
+
+    pub fn final_length_damping(&self) -> f32 {
+        self.length_damping * self.offset_length_damping
+    }
 }
 
 impl Default for SimplePhysicsProps {
@@ -66,6 +82,12 @@ impl Default for SimplePhysicsProps {
             angle_damping: 0.5,
             length_damping: 0.5,
             output_scale: Vec2::ONE,
+            offset_angle_damping: 0.5,
+            offset_length_damping: 0.5,
+            offset_gravity: 1.,
+            offset_length: 1.,
+            offset_frequency: 1.,
+            offset_output_scale: Vec2::ONE,
         }
     }
 }
@@ -83,7 +105,7 @@ pub struct SimplePhysics {
     pub system: SimplePhysicsSystem,
     pub map_mode: ParamMapMode,
 
-    pub offset_props: SimplePhysicsProps,
+    //    pub offset_props: SimplePhysicsProps,
     pub props: SimplePhysicsProps,
 
     /// Whether physics system listens to local transform only.

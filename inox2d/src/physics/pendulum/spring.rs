@@ -1,4 +1,4 @@
-use crate::physics::runge_kutta::{PhysicsState, self};
+use crate::physics::runge_kutta::{self, PhysicsState};
 use crate::physics::SimplePhysicsProps;
 use glam::{vec2, Vec2};
 use std::f32::consts::PI;
@@ -77,8 +77,8 @@ fn eval(state: &mut SpringPendulumState, props: &SimplePhysicsProps, anchor: Vec
     );
 
     let dd_bob_rot = -vec2(
-        d_bob_rot.x * props.angle_damping * crit_damp_angle,
-        d_bob_rot.y * props.length_damping * crit_damp_length,
+        d_bob_rot.x * props.final_angle_damping() * crit_damp_angle,
+        d_bob_rot.y * props.final_length_damping() * crit_damp_length,
     );
 
     let dd_bob_damping = vec2(

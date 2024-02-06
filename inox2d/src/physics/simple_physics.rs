@@ -78,28 +78,20 @@ impl SimplePhysics {
     }
 
     pub fn final_gravity(&self, puppet_physics: &PuppetPhysics) -> f32 {
-        (self.props.gravity * self.offset_props.gravity)
+        (self.props.gravity * self.props.offset_gravity)
             * puppet_physics.gravity
             * puppet_physics.pixels_per_meter
     }
 
     pub fn final_length(&self) -> f32 {
-        self.props.length * self.offset_props.length
+        self.props.length * self.props.offset_length
     }
 
     pub fn final_frequency(&self) -> f32 {
-        self.props.frequency * self.offset_props.frequency
-    }
-
-    pub fn final_angle_damping(&self) -> f32 {
-        self.props.angle_damping * self.offset_props.angle_damping
-    }
-
-    pub fn final_length_damping(&self) -> f32 {
-        self.props.length_damping * self.offset_props.length_damping
+        self.props.frequency * self.props.offset_frequency
     }
 
     pub fn final_output_scale(&self) -> Vec2 {
-        self.props.output_scale * self.offset_props.output_scale
+        self.props.output_scale * self.props.offset_output_scale
     }
 }
